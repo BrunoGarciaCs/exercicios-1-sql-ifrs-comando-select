@@ -1,0 +1,122 @@
+01. Comparação de Desigualdade (<> ou !=)
+Considere a tabela produtos com as colunas id, nome, categoria, preco e quantidade_estoque. Qual seria a consulta para saber o nome e a categoria de
+todos os produtos que não pertencem à categoria 'Alimentos'?
+
+SELECT prod.nome, prod.categoria
+FROM produtos AS prod
+WHERE prod.categoria <> 'Alimentos'
+ORDER BY prod.categoria ASC;
+
+
+
+
+02. Comparação Maior ou Igual (>=)
+Considere a tabela funcionarios com as colunas id, nome, departamento, cargo, salario e data_admissao. Qual seria a consulta para saber o nome, o 
+cargo e o salario de todos os funcionários que recebem um salário maior ou igual a 4500?
+
+SELECT func.nome, func.cargo, func.salario
+FROM funcionarios AS func
+WHERE func.salario >= 4500
+ORDER BY func.salario ASC;
+
+
+
+
+03. Comparação Menor ou Igual (<=)
+Considere a tabela pedidos com as colunas id_pedido, cliente_id, valor_total, status e data_pedido. Qual seria a consulta para saber o id_pedido e o
+valor_total de todos os pedidos cujo valor total seja menor ou igual a 150.00?
+
+SELECT ped.id_pedido, ped.valor_total
+FROM pedidos AS ped
+WHERE ped.valor_total <= 150
+ORDER BY ped.valor_total ASC;
+
+
+
+
+04. Combinação de Comparação Estrita (>) com LIKE
+Considere a tabela livros com as colunas id, titulo, autor, preco e ano_publicacao. Qual seria a consulta para saber o titulo e o preco de todos os 
+livros publicados após o ano 2020 (ano maior que 2020) e que contêm a palavra 'Python' no título?
+
+SELECT liv.titulo, liv.preco
+FROM livros as liv
+WHERE liv.ano_publicacao > 2020 AND liv.titulo LIKE '%Python%'
+ORDER BY ano_publicacao ASC;
+
+
+
+
+05. Combinação de Intervalo com Operadores Operadores (>= e <=) e IN
+Considere a tabela alunos com as colunas id, nome, curso, nota_final e status. Qual seria a consulta para saber o nome e a nota_final de todos os 
+alunos com nota entre 7.0 e 9.0 (nota maior ou igual a 7.0 E menor ou igual a 9.0) que pertencem aos cursos 'Sistemas de Informação' ou 'Ciência da 
+Computação'?
+
+SELECT alu.nome, alu.nota_final
+FROM alunos AS alu
+WHERE alu.nota_final >= 7.0 AND alu.nota_final <= 9.0 AND alu.curso IN ('Sistemas de Informação', 'Ciência da Computação')
+ORDER BY alu.curso ASC;
+
+
+
+
+06. Combinação de BETWEEN com NOT IN
+Considere a tabela produtos com as colunas id, nome, categoria, preco e status. Qual seria a consulta para saber o nome, a categoria e o preco de todos 
+os produtos cujo preço esteja no intervalo de 100.00 a 500.00 (inclusive) e que não pertençam às categorias 'Vestuário' e 'Calçados'?
+
+SELECT prod.nome, prod.categoria, prod.preco 
+FROM produtos AS prod
+WHERE prod.preco BETWEEN 100.00 AND 500.00
+AND prod.categoria NOT IN ('Vestuário', 'Calçados')
+ORDER BY prod.preco ASC;
+
+
+
+
+07. Comparação Numérica com BETWEEN e LIKE
+Considere a tabela funcionarios com as colunas id, nome, cargo, salario e data_admissao. Qual seria a consulta para saber o nome, o cargo e o salario de 
+todos os funcionários contratados entre '2021-01-01' e '2023-12-31' que recebem um salário maior ou igual a 3500.00 e cujo cargo contenha a palavra 'Analista'?
+
+SELECT func.nome, func.cargo, func.salario
+FROM funcionarios AS func
+WHERE func.data_admissao BETWEEN '2021-01-01' AND '2023-12-31'
+AND func.salario >= 3500.00 AND func.cargo LIKE '%Analista%';
+
+
+
+
+08. Combinação de Negação com NOT LIKE e IN
+Considere a tabela clientes com as colunas id, nome, cidade, estado e email. Qual seria a consulta para saber o nome, o estado e o email de todos os clientes 
+que moram nos estados 'SP', 'RJ' ou 'MG' e cujo e-mail não termina com '@hotmail.com'?
+
+SELECT cli.nome, cli.estado, cli.email
+FROM clientes AS cli
+WHERE cli.estado IN ('SP', 'RJ', 'MG') AND cli.email NOT LIKE '%hotmail.com'
+ORDER BY cli.estado ASC;
+
+
+
+
+09. Operadores de Comparação Estrita e NOT IN
+Considere a tabela pedidos com as colunas id_pedido, cliente_id, valor_total, status e frete. Qual seria a consulta para saber o id_pedido e o valor_total de 
+todos os pedidos com valor total estritamente maior que 200.00, frete menor ou igual a 30.00 e cujo status não seja nem 'Cancelado' nem 'Devolvido'?
+
+SELECT ped.id_pedido, ped.valor_total
+FROM pedidos AS ped
+WHERE ped.valor_total > 200.00 
+AND ped.frete <= 30.00 
+AND ped.status NOT IN ('Cancelado', 'Devolvido')
+ORDER BY ped.valor_total ASC;
+
+
+
+
+10. Combinação Múltipla de Intervalo, Comparação e Padrão de Texto
+Considere a tabela alunos com as colunas id, nome, curso, nota_final e ano_ingresso. Qual seria a consulta para saber o nome, o curso e a nota_final de todos 
+os alunos que ingressaram no ano 2022 ou posterior, têm nota final fora do intervalo de 0.0 a 5.9 (usando NOT BETWEEN) e cujo nome começa com a letra 'M'?
+
+SELECT alu.nome, alu.curso, alu.nota_final
+FROM alunos AS alu
+WHERE alu.ano_ingresso >= 2022
+AND alu.nota_final NOT BETWEEN 0.0 AND 5.9
+AND alu.nome LIKE 'M%'
+ORDER BY alu.ano_ingresso ASC;
