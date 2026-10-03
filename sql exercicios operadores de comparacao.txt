@@ -9,21 +9,17 @@ O objetivo deste documento é documentar o aprendizado prático em consultas ava
 🛠️ Comandos e Conceitos Praticados
 
 Nesta lista, foram aprofundados os seguintes comandos e recursos de manipulação de dados:
-
 Operadores de Desigualdade e Comparação (<>, >=, <=, >): Filtragem condicional numérica e textual estrita.
-
 BETWEEN e NOT BETWEEN: Seleção e exclusão baseada em intervalos inclusivos (faixas numéricas, datas e notas).
-
 NOT LIKE: Negação de padrões de texto.
-
 Combinação de Filtros Complexos (AND, OR, IN, NOT IN): Construção de cláusulas WHERE multifatoriais.
-
 ORDER BY (ASC / DESC): Ordenação explícita de resultados para apresentação de dados legível e organizada.
+
+
 
 📝 Enunciados e Soluções SQL
 
 01. Comparação de Desigualdade (<>)
-
 Enunciado: Considere a tabela produtos com as colunas id, nome, categoria, preco e quantidade_estoque. Qual seria a consulta para saber o nome e a categoria de todos os produtos que não pertencem à categoria 'Alimentos'?
 
 SELECT prod.nome, prod.categoria
@@ -32,8 +28,8 @@ WHERE prod.categoria <> 'Alimentos'
 ORDER BY prod.categoria ASC;
 
 
-02. Comparação Maior ou Igual (>=)
 
+02. Comparação Maior ou Igual (>=)
 Enunciado: Considere a tabela funcionarios com as colunas id, nome, departamento, cargo, salario e data_admissao. Qual seria a consulta para saber o nome, o cargo e o salário de todos os funcionários que recebem um salário maior ou igual a 4500?
 
 SELECT func.nome, func.cargo, func.salario
@@ -42,8 +38,8 @@ WHERE func.salario >= 4500
 ORDER BY func.salario ASC;
 
 
-03. Comparação Menor ou Igual (<=)
 
+03. Comparação Menor ou Igual (<=)
 Enunciado: Considere a tabela pedidos com as colunas id_pedido, cliente_id, valor_total, status e data_pedido. Qual seria a consulta para saber o id_pedido e o valor_total de todos os pedidos cujo valor total seja menor ou igual a 150.00?
 
 SELECT ped.id_pedido, ped.valor_total
@@ -52,8 +48,8 @@ WHERE ped.valor_total <= 150.00
 ORDER BY ped.valor_total ASC;
 
 
-04. Combinação de Comparação Estrita (>) com LIKE
 
+04. Combinação de Comparação Estrita (>) com LIKE
 Enunciado: Considere a tabela livros com as colunas id, titulo, autor, preco e ano_publicacao. Qual seria a consulta para saber o título e o preço de todos os livros publicados após o ano 2020 (ano maior que 2020) e que contêm a palavra 'Python' no título?
 
 SELECT liv.titulo, liv.preco
@@ -63,8 +59,8 @@ WHERE liv.ano_publicacao > 2020
 ORDER BY liv.ano_publicacao ASC;
 
 
-05. Combinação de Intervalo Lógico (>=, <=) e IN
 
+05. Combinação de Intervalo Lógico (>=, <=) e IN
 Enunciado: Considere a tabela alunos com as colunas id, nome, curso, nota_final e status. Qual seria a consulta para saber o nome e a nota_final de todos os alunos com nota entre 7.0 e 9.0 (nota maior ou igual a 7.0 E menor ou igual a 9.0) que pertencem aos cursos 'Sistemas de Informação' ou 'Ciência da Computação'?
 
 SELECT alu.nome, alu.nota_final
@@ -75,8 +71,8 @@ WHERE alu.nota_final >= 7.0
 ORDER BY alu.curso ASC;
 
 
-06. Combinação de BETWEEN com NOT IN
 
+06. Combinação de BETWEEN com NOT IN
 Enunciado: Considere a tabela produtos com as colunas id, nome, categoria, preco e status. Qual seria a consulta para saber o nome, a categoria e o preço de todos os produtos cujo preço esteja no intervalo de 100.00 a 500.00 (inclusive) e que não pertençam às categorias 'Vestuário' e 'Calçados'?
 
 SELECT prod.nome, prod.categoria, prod.preco 
@@ -86,8 +82,8 @@ WHERE prod.preco BETWEEN 100.00 AND 500.00
 ORDER BY prod.preco ASC;
 
 
-07. Comparação Numérica/Temporal com BETWEEN e LIKE
 
+07. Comparação Numérica/Temporal com BETWEEN e LIKE
 Enunciado: Considere a tabela funcionarios com as colunas id, nome, cargo, salario e data_admissao. Qual seria a consulta para saber o nome, o cargo e o salário de todos os funcionários contratados entre '2021-01-01' e '2023-12-31' que recebem um salário maior ou igual a 3500.00 e cujo cargo contenha a palavra 'Analista'?
 
 SELECT func.nome, func.cargo, func.salario
@@ -97,8 +93,8 @@ WHERE func.data_admissao BETWEEN '2021-01-01' AND '2023-12-31'
   AND func.cargo LIKE '%Analista%';
 
 
-08. Combinação de Negação com NOT LIKE e IN
 
+08. Combinação de Negação com NOT LIKE e IN
 Enunciado: Considere a tabela clientes com as colunas id, nome, cidade, estado e email. Qual seria a consulta para saber o nome, o estado e o e-mail de todos os clientes que moram nos estados 'SP', 'RJ' ou 'MG' e cujo e-mail não termina com '@hotmail.com'?
 
 SELECT cli.nome, cli.estado, cli.email
@@ -108,8 +104,8 @@ WHERE cli.estado IN ('SP', 'RJ', 'MG')
 ORDER BY cli.estado ASC;
 
 
-09. Operadores de Comparação Estrita e NOT IN
 
+09. Operadores de Comparação Estrita e NOT IN
 Enunciado: Considere a tabela pedidos com as colunas id_pedido, cliente_id, valor_total, status e frete. Qual seria a consulta para saber o id_pedido e o valor_total de todos os pedidos com valor total estritamente maior que 200.00, frete menor ou igual a 30.00 e cujo status não seja nem 'Cancelado' nem 'Devolvido'?
 
 SELECT ped.id_pedido, ped.valor_total
@@ -120,8 +116,8 @@ WHERE ped.valor_total > 200.00
 ORDER BY ped.valor_total ASC;
 
 
-10. Combinação Múltipla de Intervalo, Comparação e Padrão de Texto
 
+10. Combinação Múltipla de Intervalo, Comparação e Padrão de Texto
 Enunciado: Considere a tabela alunos com as colunas id, nome, curso, nota_final e ano_ingresso. Qual seria a consulta para saber o nome, o curso e a nota_final de todos os alunos que ingressaram no ano 2022 ou posterior, têm nota final fora do intervalo de 0.0 a 5.9 (usando NOT BETWEEN) e cujo nome começa com a letra 'M'?
 
 SELECT alu.nome, alu.curso, alu.nota_final
